@@ -131,6 +131,7 @@ jobs:
         run: |
           sudo buildah build \
             --arch "${{ matrix.arch }}" \
+            --format "docker" \
             --build-arg FEDORA_MAJOR_VERSION="${{ matrix.version }}" \
             --build-arg SOURCE_IMAGE="${{ env.SOURCE_IMAGE }}" \
             --build-arg SOURCE_ORG="${{ env.SOURCE_ORG }}" \
