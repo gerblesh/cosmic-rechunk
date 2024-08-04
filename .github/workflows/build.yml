@@ -124,8 +124,7 @@ jobs:
           containerfiles: |
             Containerfile
           image: 'raw-img'
-          # tags: |
-          #   ${{ steps.generate-tags.outputs.alias_tags }}
+          tags: 'version'
           archs: ${{ matrix.arch }}
           build-args: |
             FEDORA_MAJOR_VERSION=${{ matrix.version }}
@@ -152,7 +151,7 @@ jobs:
           rechunk: 'ghcr.io/hhd-dev/rechunk:v0.5.0'
           ref: 'raw-img'
           prev-ref: true
-          version: ''
+          version: 'version'
           labels: |
             org.opencontainers.image.title=cosmic-${{ matrix.flavor }}
             org.opencontainers.image.version=${{ matrix.version }}
