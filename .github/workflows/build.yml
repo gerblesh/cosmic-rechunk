@@ -17,7 +17,7 @@ concurrency:
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
       packages: write
@@ -117,31 +117,31 @@ jobs:
           fi
 
       # Build image using Buildah action
-      - name: Build Image
-        id: build_image
-        uses: redhat-actions/buildah-build@v2
-        with:
-          containerfiles: |
-            Containerfile
-          image: 'raw-img'
-          tags: 'version'
-          archs: ${{ matrix.arch }}
-          build-args: |
-            FEDORA_MAJOR_VERSION=${{ matrix.version }}
-            SOURCE_IMAGE=${{ env.SOURCE_IMAGE }}
-            SOURCE_ORG=${{ env.SOURCE_ORG }}
-          oci: false
-
       # - name: Build Image
       #   id: build_image
-      #   run: |
-      #     sudo buildah build \
-      #       --arch "${{ matrix.arch }}" \
-      #       --format "docker" \
-      #       --build-arg FEDORA_MAJOR_VERSION="${{ matrix.version }}" \
-      #       --build-arg SOURCE_IMAGE="${{ env.SOURCE_IMAGE }}" \
-      #       --build-arg SOURCE_ORG="${{ env.SOURCE_ORG }}" \
-      #       --tag raw-img .
+      #   uses: redhat-actions/buildah-build@v2
+      #   with:
+      #     containerfiles: |
+      #       Containerfile
+      #     image: 'raw-img'
+      #     tags: 'version'
+      #     archs: ${{ matrix.arch }}
+      #     build-args: |
+      #       FEDORA_MAJOR_VERSION=${{ matrix.version }}
+      #       SOURCE_IMAGE=${{ env.SOURCE_IMAGE }}
+      #       SOURCE_ORG=${{ env.SOURCE_ORG }}
+      #     oci: false
+
+      - name: Build Image
+        id: build_image
+        run: |
+          sudo buildah build \
+            --arch "${{ matrix.arch }}" \
+            --format "docker" \
+            --build-arg FEDORA_MAJOR_VERSION="${{ matrix.version }}" \
+            --build-arg SOURCE_IMAGE="${{ env.SOURCE_IMAGE }}" \
+            --build-arg SOURCE_ORG="${{ env.SOURCE_ORG }}" \
+            --tag raw-img .
 
       # Reprocess raw-img using rechunker which will delete it
       - name: Run Rechunker
