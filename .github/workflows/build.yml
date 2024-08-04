@@ -130,7 +130,6 @@ jobs:
         id: build_image
         run: |
           sudo buildah build \
-            --target "cosmic-${{ matrix.flavor }}" \
             --arch "${{ matrix.arch }}" \
             --build-arg FEDORA_MAJOR_VERSION="${{ matrix.version }}" \
             --build-arg SOURCE_IMAGE="${{ env.SOURCE_IMAGE }}" \
