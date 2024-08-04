@@ -6,7 +6,8 @@ ARG FEDORA_MAJOR_VERSION="${FEDORA_MAJOR_VERSION:-40}"
 FROM ${BASE_IMAGE}:${FEDORA_MAJOR_VERSION}
 ARG FEDORA_MAJOR_VERSION="${FEDORA_MAJOR_VERSION:-40}"
 
-COPY greetd-workaround.service /usr/lib/systemd/system/greetd-workaround.service
+# testing without the greetd workaround
+# COPY greetd-workaround.service /usr/lib/systemd/system/greetd-workaround.service
 
 # Build in one step
 # Install tuned/tuned-ppd if the image is a base one
