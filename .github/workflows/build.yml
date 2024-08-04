@@ -116,7 +116,7 @@ jobs:
             echo "SOURCE_IMAGE=${{ matrix.flavor }}" >> $GITHUB_ENV
           fi
 
-      Build image using Buildah action
+      # Build image using Buildah action
       - name: Build Image
         id: build_image
         uses: redhat-actions/buildah-build@v2
