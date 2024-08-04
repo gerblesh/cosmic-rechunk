@@ -192,6 +192,8 @@ jobs:
           registry: ${{ steps.registry_case.outputs.lowercase }}
           image: cosmic-${{ matrix.flavor }}
           tags: ${{ steps.generate-tags.outputs.alias_tags }}
+          extra-args: |
+          --disable-content-trust
 
       # Sign container
       - uses: sigstore/cosign-installer@v3.5.0
