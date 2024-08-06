@@ -116,22 +116,6 @@ jobs:
             echo "SOURCE_IMAGE=${{ matrix.flavor }}" >> $GITHUB_ENV
           fi
 
-      # Build image using Buildah action
-      # - name: Build Image
-      #   id: build_image
-      #   uses: redhat-actions/buildah-build@v2
-      #   with:
-      #     containerfiles: |
-      #       Containerfile
-      #     image: 'raw-img'
-      #     tags: 'version'
-      #     archs: ${{ matrix.arch }}
-      #     build-args: |
-      #       FEDORA_MAJOR_VERSION=${{ matrix.version }}
-      #       SOURCE_IMAGE=${{ env.SOURCE_IMAGE }}
-      #       SOURCE_ORG=${{ env.SOURCE_ORG }}
-      #     oci: false
-
       - name: Build Image
         id: build_image
         run: |
