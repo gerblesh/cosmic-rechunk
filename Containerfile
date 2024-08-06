@@ -6,11 +6,7 @@ ARG FEDORA_MAJOR_VERSION="${FEDORA_MAJOR_VERSION:-40}"
 FROM ${BASE_IMAGE}:${FEDORA_MAJOR_VERSION}
 ARG FEDORA_MAJOR_VERSION="${FEDORA_MAJOR_VERSION:-40}"
 
-# testing without the greetd workaround
-# COPY greetd-workaround.service /usr/lib/systemd/system/greetd-workaround.service
-
 # Build in one step
-# Install tuned/tuned-ppd if the image is a base one
 RUN if [[ "${FEDORA_MAJOR_VERSION}" == "rawhide" ]]; then \
         curl -Lo /etc/yum.repos.d/_copr_ryanabx-cosmic.repo \
             https://copr.fedorainfracloud.org/coprs/ryanabx/cosmic-epoch/repo/fedora-rawhide/ryanabx-cosmic-epoch-fedora-rawhide.repo \
