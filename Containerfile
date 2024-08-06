@@ -19,12 +19,8 @@ RUN if [[ "${FEDORA_MAJOR_VERSION}" == "rawhide" ]]; then \
     ; fi && \
     rpm-ostree install \
         cosmic-desktop && \
-    rpm-ostree override remove \
-        power-profiles-daemon || true && \
-    rpm-ostree install tuned tuned-ppd && \
     rpm-ostree install \
         gnome-keyring && \
-    systemctl enable tuned-ppd && \
     systemctl disable gdm || true && \
     systemctl disable sddm || true && \
     systemctl enable cosmic-greeter && \
